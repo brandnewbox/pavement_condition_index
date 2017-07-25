@@ -41,3 +41,4 @@ end
 
 require 'pavement_condition_index/sample_unit_condition_survey'
 require 'pavement_condition_index/distress'
+require 'pavement_condition_index/distress_group'

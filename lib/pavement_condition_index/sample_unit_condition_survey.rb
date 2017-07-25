@@ -11,6 +11,14 @@ module PavementConditionIndex
       @distresses = distresses.map{|distress| Distress.new(distress)}
     end
 
+    def distress_groups
+      @distresses.group_by(&:type).each do |type, dist|
+        dist.group_by(&:severity).each do |severity, dist2|
+          DistressGroup.new(dist2)
+        end
+      end
+    end
+
     # def distress_groups
     #   @distress_groups ||= @distresses.group_by(&:type)
     # end
