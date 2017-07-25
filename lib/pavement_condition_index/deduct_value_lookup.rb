@@ -1,4 +1,4 @@
-module PavementConditionInventory
+module PavementConditionIndex
   class DeductValueLookup
 
     def initialize(pavement_type:nil,severity:nil,distress_type:nil)
@@ -268,7 +268,7 @@ module PavementConditionInventory
         },
         spalling_corner: {
           low: [0.0063, 0.074, -0.123].reverse,
-          medium: ,[0.0044, 0.2576, -0.0557].reverse
+          medium: [0.0044, 0.2576, -0.0557].reverse,
           high: [-0.0101, 0.7972, 0.0026].reverse,
           valid_min: 0,
           valid_max: 100
