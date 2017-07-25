@@ -3,9 +3,10 @@ module PavementConditionIndex
 
     attr_reader :deduct_values, :q
 
-    def initialize(deduct_values:nil)
-      @deduct_values = deduct_values.clone
+    def initialize(deduct_values:nil,pavement_type:nil)
+      @deduct_values = deduct_values.clone.sort {|x,y| y <=> x}
       @q = @deduct_values.select {|dv| dv > 2.0}.length
+      @pavement_type = pavement_type
     end
 
     def total_deduct_value
@@ -13,12 +14,12 @@ module PavementConditionIndex
     end
 
     def corrected_deduct_value
-      @corrected_deduct_value ||= 10
+      @corrected_deduct_value ||= PavementConditionIndex::CorrectedDeductValueLookup.new(pavement_type: @pavement_type, q: @q).call(total_deduct_value)
     end
 
     # return deduct_values with [lowest value greater than 2.0] changed to 2.0
     # return nil if there are no more iterations left
-    def next_iteration
+    def next_iteration_deduct_values
       return nil if @q == 1
 
       deduct_values = @deduct_values
