@@ -1,23 +1,15 @@
 module PavementConditionIndex
   class SampleUnitConditionSurvey
 
-    def self.hello_hello
-      puts 'hello gem class!'
+    attr_reader :area
+    attr_reader :pavement_type
+    attr_reader :distresses
+
+    def initialize(area:nil,pavement_type:nil,distresses:nil)
+      @area = area
+      @pavement_type = pavement_type
+      @distresses = distresses.map{|distress| Distress.new(distress)}
     end
-
-  end
-end
-
-    # attr_reader :area
-
-    # def initialize(area:nil,pavement_type:nil,distresses:nil)
-    #   @area = area
-    #   @pavement_type = pavement_type
-    #   @distresses = distresses.map{|distress| Distress.new(distress)}
-    #   @distress_groups = @distresses.map{|distress|
-
-    #   }
-    # end
 
     # def distress_groups
     #   @distress_groups ||= @distresses.group_by(&:type)
@@ -96,5 +88,5 @@ end
     #   @maximum_corrected_deduct_value ||= corrected_deduct_value_table.rows.map(&:cdv).max || 0
     # end
 
-#   end
-# end
+  end
+end
