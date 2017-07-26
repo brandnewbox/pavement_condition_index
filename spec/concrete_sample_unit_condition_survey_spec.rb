@@ -5,6 +5,7 @@ RSpec.describe PavementConditionIndex do
   describe 'concrete_sample_unit_condition_survey' do 
     before do
       @sample_survey = PavementConditionIndex::SampleUnitConditionSurvey::ConcreteSurvey.new({
+        identifier: 'G30',
         area: 2500,
         number_of_slabs: 20,
         distresses: [
@@ -18,6 +19,10 @@ RSpec.describe PavementConditionIndex do
           {severity: :high, type: :spalling_joint, quantity: 1},
         ]
       })
+    end
+
+    it 'has a correct identifier' do
+      expect(@sample_survey.identifier).to eql('G30')
     end
 
     it 'has a correct area' do
