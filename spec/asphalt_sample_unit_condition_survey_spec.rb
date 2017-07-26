@@ -4,7 +4,7 @@ RSpec.describe PavementConditionIndex do
 
   describe 'asphalt_sample_unit_condition_survey' do 
     before do
-      @sample_survey = PavementConditionIndex::SampleUnitConditionSurvey.new({
+      @sample_survey = PavementConditionIndex::AsphaltSampleUnitConditionSurvey.new({
         area: 2500, # Required: square footage of entire sample unit
         pavement_type: :asphalt, # Required
         distresses: [

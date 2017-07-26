@@ -2,13 +2,13 @@ module PavementConditionIndex
   class DistressGroup
 
     attr_reader :type, :severity, :distresses
-    attr_reader :area, :pavement_type
+    attr_reader :sample_unit_size, :pavement_type
 
-    def initialize(type:nil,severity:nil,distresses:nil,area:nil,pavement_type:nil)
+    def initialize(type:nil,severity:nil,distresses:nil,sample_unit_size:nil,pavement_type:nil)
       @type = type
       @severity = severity
       @distresses = distresses
-      @area = area
+      @sample_unit_size = sample_unit_size
       @pavement_type = pavement_type
     end
 
@@ -21,7 +21,7 @@ module PavementConditionIndex
         if @type == :joint_seal_damage 
           1.0
         else
-          total_quantity/@area.to_f
+          total_quantity/@sample_unit_size.to_f
         end
       end
     end

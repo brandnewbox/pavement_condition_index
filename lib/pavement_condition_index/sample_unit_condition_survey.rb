@@ -1,19 +1,12 @@
 module PavementConditionIndex
   class SampleUnitConditionSurvey
 
-    attr_reader :area, :pavement_type, :distresses
-
-    def initialize(area:nil,pavement_type:nil,distresses:nil)
-      @area = area
-      @pavement_type = pavement_type
-      @distresses = distresses.map{|distress| PavementConditionIndex::Distress.new(distress)}
-    end
+    attr_reader :area, :pavement_type, :distresses, :sample_unit_size
 
     def distress_groups
       @distress_groups ||= begin
-        grouped_distresses = @distresses.group_by{|distress| [distress.type,distress.severity]}
-        distress_groups = grouped_distresses.map{|key,value| PavementConditionIndex::DistressGroup.new(type: key[0],severity: key[1],distresses: value,area: area,pavement_type: pavement_type)}
-        distress_groups
+        grouped_distresses = @distresses.group_by{|distress| [distress[:type],distress[:severity]]}
+        grouped_distresses.map{|key,value| PavementConditionIndex::DistressGroup.new(type: key[0],severity: key[1],distresses: value,sample_unit_size: @sample_unit_size,pavement_type: @pavement_type)}
       end
     end
 

@@ -5,9 +5,11 @@ end
 
 require 'pavement_condition_index/section_condition_survey'
 require 'pavement_condition_index/sample_unit_condition_survey'
-require 'pavement_condition_index/distress'
 require 'pavement_condition_index/distress_group'
 require 'pavement_condition_index/cdv_iteration'
+
+require 'pavement_condition_index/sample_unit_condition_surveys/asphalt_sample_unit_condition_survey'
+require 'pavement_condition_index/sample_unit_condition_surveys/concrete_sample_unit_condition_survey'
 
 require 'pavement_condition_index/lookups/deduct_values'
 require 'pavement_condition_index/lookups/corrected_deduct_values'

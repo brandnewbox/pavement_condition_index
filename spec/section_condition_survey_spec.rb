@@ -5,8 +5,7 @@ RSpec.describe PavementConditionIndex do
   describe 'concrete_sample_unit_condition_survey' do 
     before do
       @asphalt_sample_survey = PavementConditionIndex::SampleUnitConditionSurvey.new({
-        area: 2500, # Required: square footage of entire sample unit
-        pavement_type: :asphalt, # Required
+        area: 2500,
         distresses: [
           {severity: :low, type: :alligator_cracking, quantity: 5},
           {severity: :low, type: :alligator_cracking, quantity: 4},
@@ -35,11 +34,11 @@ RSpec.describe PavementConditionIndex do
         ]
       })
 
-      @concrete_sample_survey = PavementConditionIndex::SampleUnitConditionSurvey.new({
-        area: 20, # Required: number of slabs
-        pavement_type: :concrete, # Required
+      @concrete_sample_survey = PavementConditionIndex::concreteSampleUnitConditionSurvey.new({
+        area: 2500,
+        number_of_slabs: 20,
         distresses: [
-          {severity: :high, type: :joint_seal_damage, quantity: 123}, # joint_seal_damage has no area
+          {severity: :high, type: :joint_seal_damage, quantity: 123}, # joint_seal_damage has no 'quantity'
           {severity: :low, type: :corner_break, quantity: 3},
           {severity: :medium, type: :corner_break, quantity: 1},
           {severity: :medium, type: :divided_slab, quantity: 3},
