@@ -25,12 +25,12 @@ module PavementConditionIndex
           q2: [-0.0033, 0.9085, -0.1658].reverse,
           q3: [-0.0012, 0.7534, -3.0795].reverse,
           q4: [-0.0014, 0.7484, -5.1386].reverse,
-          q5: [0], #unofficial
+          q5: [-0.0014, 0.7087, -6.0749].reverse, #unofficial
           q6: [0.0013, 0.5147, -3.8371].reverse,
-          q7: [0], #unofficial
-          q8: [0], #unofficial
+          q7: [0.0006, 0.5678, -7.6586].reverse, #unofficial
+          q8: [-0.0004, 0.5955, -7.7053].reverse, #unofficial
           q9: [0.0018, 0.392, -2.6949].reverse,
-          q10: [0] #unofficial
+          q10: [-0.0019, 0.6553, -14.2683].reverse #unofficial
         }
       }
 
