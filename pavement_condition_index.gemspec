@@ -6,8 +6,8 @@ require "pavement_condition_index/version"
 Gem::Specification.new do |spec|
   spec.name          = "pavement_condition_index"
   spec.version       = PavementConditionIndex::VERSION
-  spec.authors       = ["Andy Monroe"]
-  spec.email         = ["jayhawker805@gmail.com"]
+  spec.authors       = ["Andy Monroe", "Nate Clark"]
+  spec.email         = ["amonroe805@gmail.com"]
 
   spec.summary       = %q{Summary}
   spec.homepage      = "http://www.google.com"
