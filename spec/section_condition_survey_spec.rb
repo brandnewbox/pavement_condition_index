@@ -2,9 +2,9 @@ require "spec_helper"
 
 RSpec.describe PavementConditionIndex do
   
-  describe 'concrete_sample_unit_condition_survey' do 
+  describe 'section_condition_survey' do 
     before do
-      @asphalt_sample_survey = PavementConditionIndex::SampleUnitConditionSurvey.new({
+      @asphalt_sample_survey = PavementConditionIndex::SampleUnitConditionSurvey::AsphaltSurvey.new({
         area: 2500,
         distresses: [
           {severity: :low, type: :alligator_cracking, quantity: 5},

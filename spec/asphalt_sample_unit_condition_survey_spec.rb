@@ -4,9 +4,8 @@ RSpec.describe PavementConditionIndex do
 
   describe 'asphalt_sample_unit_condition_survey' do 
     before do
-      @sample_survey = PavementConditionIndex::AsphaltSampleUnitConditionSurvey.new({
-        area: 2500, # Required: square footage of entire sample unit
-        pavement_type: :asphalt, # Required
+      @sample_survey = PavementConditionIndex::SampleUnitConditionSurvey::AsphaltSurvey.new({
+        area: 2500,
         distresses: [
           {severity: :low, type: :alligator_cracking, quantity: 5},
           {severity: :low, type: :alligator_cracking, quantity: 4},
@@ -74,8 +73,8 @@ RSpec.describe PavementConditionIndex do
         expect(@first_distress_group.severity).to eq(:low)
       end
 
-      it 'has correct area' do
-        expect(@first_distress_group.area).to eq(2500)
+      it 'has correct size_of_sample_unit' do
+        expect(@first_distress_group.size_of_sample_unit).to eq(2500)
       end
 
       it 'has correct pavement_type' do
