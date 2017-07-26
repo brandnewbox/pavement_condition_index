@@ -40,12 +40,12 @@ module PavementConditionIndex
     end
 
     def pavement_condition_index
-      @pavement_condition_index ||= weighted_pci_scores.sum / sum_of_sample_unit_condition_survey_areas.to_f
+      @pavement_condition_index ||= begin
+        pci_score = weighted_pci_scores.sum / sum_of_sample_unit_condition_survey_areas.to_f
+        PavementConditionIndex::PCI.new(score: pci_score)
+      end
     end
     alias_method :pci, :pavement_condition_index
 
-    def rating
-      @rating ||= PavementConditionIndex::Lookups::PciRatings.new(pavement_condition_index).rating
-    end
   end
 end

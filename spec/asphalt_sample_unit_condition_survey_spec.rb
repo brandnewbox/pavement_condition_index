@@ -144,12 +144,16 @@ RSpec.describe PavementConditionIndex do
       expect(@sample_survey.maximum_corrected_deduct_value).to be_within(3).of(51)
     end
 
-    it 'gets the right pavement_condition_index' do
-      expect(@sample_survey.pavement_condition_index).to be_within(3).of(49)
+    it 'has correct pci score' do
+      expect(@sample_survey.pci.score).to be_within(3).of(49)
     end
 
-    it 'gets the right rating' do
-      expect(@sample_survey.rating).to eq('Poor')
+    it 'has correct pci rating' do
+      expect(@sample_survey.pci.rating).to eq('Poor')
+    end
+
+    it 'has correct pci color' do
+      expect(@sample_survey.pci.color).to eq('#fc2e1f')
     end
 
   end

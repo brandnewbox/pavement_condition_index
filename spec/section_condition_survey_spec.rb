@@ -34,7 +34,7 @@ RSpec.describe PavementConditionIndex do
         ]
       })
 
-      @concrete_sample_survey = PavementConditionIndex::concreteSampleUnitConditionSurvey.new({
+      @concrete_sample_survey = PavementConditionIndex::SampleUnitConditionSurvey::ConcreteSurvey.new({
         area: 2500,
         number_of_slabs: 20,
         distresses: [
@@ -57,8 +57,16 @@ RSpec.describe PavementConditionIndex do
         })
     end
 
-    it 'has correct pci' do
-      expect(@section_survey.pci).to be_within(3).of(49)
+    it 'has correct pci score' do
+      expect(@section_survey.pci.score).to be_within(3).of(49)
+    end
+
+    it 'has correct pci rating' do
+      expect(@section_survey.pci.rating).to eq('Poor')
+    end
+
+    it 'has correct pci color' do
+      expect(@section_survey.pci.color).to eq('#fc2e1f')
     end
 
   end
