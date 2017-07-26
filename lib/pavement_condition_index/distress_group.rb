@@ -13,7 +13,7 @@ module PavementConditionIndex
     end
 
     def total_quantity
-      @total_quantity ||= @distresses.map{|distress| distress[:quantity]}.inject(0){|sum,x| sum + x }
+      @total_quantity ||= @distresses.map{|distress| distress[:quantity]}.reduce(:+)
     end
 
     def density
