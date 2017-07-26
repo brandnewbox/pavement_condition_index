@@ -31,7 +31,7 @@ RSpec.describe PavementConditionIndex do
           {severity: :low, type: :rutting, quantity: 4},
           {severity: :low, type: :rutting, quantity: 9},
           {severity: :low, type: :rutting, quantity: 8},
-          {severity: :low, type: :weathering_and_raveling, quantity: 250}
+          {severity: :low, type: :weathering, quantity: 250}
         ]
       })
     end

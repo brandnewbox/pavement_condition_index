@@ -111,6 +111,13 @@ module PavementConditionIndex
             valid_min: 1.0,
             valid_max: 40.0
           },
+          raveling: {
+            low: [0.01, 1.00, 0.76, 1.60, 2.17].reverse,
+            medium: [-0.37, 2.49, 2.93, 4.69, 8.86].reverse,
+            high: [-3.34, 5.98, 11.16, 11.58, 15.57].reverse,
+            valid_min: 0.1,
+            valid_max: 100.0
+          },
           rutting: {
             low: [-0.94, 0.37, 7.28, 13.15, 7.05].reverse,
             medium: [-1.26, 0.15, 7.28, 20.22, 17.27].reverse,
@@ -139,7 +146,7 @@ module PavementConditionIndex
             valid_min: 1.0,
             valid_max: 30.0
           },
-          weathering_and_raveling: {
+          weathering: {
             low: [0.01, 1.00, 0.76, 1.60, 2.17].reverse,
             medium: [-0.37, 2.49, 2.93, 4.69, 8.86].reverse,
             high: [-3.34, 5.98, 11.16, 11.58, 15.57].reverse,
