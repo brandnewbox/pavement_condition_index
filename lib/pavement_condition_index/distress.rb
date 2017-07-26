@@ -8,6 +8,5 @@ module PavementConditionIndex
       @type = type
       @quantity = quantity
     end
-
   end
 end

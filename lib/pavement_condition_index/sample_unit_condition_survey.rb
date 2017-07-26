@@ -6,17 +6,15 @@ module PavementConditionIndex
     def initialize(area:nil,pavement_type:nil,distresses:nil)
       @area = area
       @pavement_type = pavement_type
-      @distresses = distresses.map{|distress| Distress.new(distress)}
+      @distresses = distresses.map{|distress| PavementConditionIndex::Distress.new(distress)}
     end
 
     def distress_groups
-      groups = @distresses.group_by{|dst|
-        [dst.type,dst.severity]}.map{|key,value|
-          DistressGroup.new(type: key[0],
-                            severity: key[1],
-                            distresses: value,
-                            area: area,
-                            pavement_type: pavement_type)}
+      @distress_groups ||= begin
+        grouped_distresses = @distresses.group_by{|distress| [distress.type,distress.severity]}
+        distress_groups = grouped_distresses.map{|key,value| PavementConditionIndex::DistressGroup.new(type: key[0],severity: key[1],distresses: value,area: area,pavement_type: pavement_type)}
+        distress_groups
+      end
     end
 
     def cdv_iterations
@@ -33,7 +31,7 @@ module PavementConditionIndex
       @allowed_deduct_values ||= begin
         dvs = deduct_values.clone
         adv = dvs.shift(allowable_number_of_deduct_values.floor)
-        adv << (allowable_number_of_deduct_values % 1) * dvs[0] if dvs.any?
+        adv << (allowable_number_of_deduct_values % 1).to_f * dvs[0].to_f if dvs.any?
         adv
       end
     end
@@ -62,8 +60,7 @@ module PavementConditionIndex
     end
 
     def rating
-      @rating ||= PavementConditionIndex::PciRatingLookup.new(pavement_condition_index).rating
+      @rating ||= PavementConditionIndex::Lookups::PciRatings.new(pci: pavement_condition_index).rating
     end
-
   end
 end

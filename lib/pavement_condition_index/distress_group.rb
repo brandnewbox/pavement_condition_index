@@ -13,7 +13,15 @@ module PavementConditionIndex
     end
 
     def total_quantity
-      @total_quantity ||= @distresses.map(&:quantity).sum
+      # @total_quantity ||= begin
+        # if @type == :joint_seal_damage 
+        #   # @area
+        #   55.0
+        # else
+        #   @distresses.map(&:quantity).sum
+        # end
+      # end
+      55.0
     end
 
     def density
@@ -25,8 +33,7 @@ module PavementConditionIndex
     end
 
     def deduct_value
-      @deduct_value ||= PavementConditionIndex::DeductValueLookup.new(pavement_type: @pavement_type, distress_type: @type, severity: @severity).call(density_percentage)
+      @deduct_value ||= PavementConditionIndex::Lookups::DeductValues.new(pavement_type: @pavement_type, distress_type: @type, severity: @severity).call(density_percentage)
     end
-    
   end
 end

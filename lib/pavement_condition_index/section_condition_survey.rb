@@ -34,7 +34,7 @@ module PavementConditionIndex
     end
 
     def rating
-      @rating ||= PavementConditionIndex::PciRatingLookup.new(pavement_condition_index).rating
+      @rating ||= PavementConditionIndex::Lookups::PciRatings.new(pavement_condition_index).rating
     end
   end
 end

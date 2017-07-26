@@ -14,11 +14,11 @@ module PavementConditionIndex
     end
 
     def corrected_deduct_value
-      @corrected_deduct_value ||= PavementConditionIndex::CorrectedDeductValueLookup.new(pavement_type: @pavement_type, q: @q).call(total_deduct_value)
+      @corrected_deduct_value ||= PavementConditionIndex::Lookups::CorrectedDeductValues.new(pavement_type: @pavement_type, q: @q).call(total_deduct_value)
     end
 
-    # return deduct_values with [lowest value greater than 2.0] changed to 2.0
-    # return nil if there are no more iterations left
+    # return deduct_values with <lowest value greater than 2.0> changed to 2.0
+    # if there are no more iterations left, return nil
     def next_iteration_deduct_values
       return nil if @q == 1
 
@@ -32,6 +32,5 @@ module PavementConditionIndex
         nil
       end
     end
-
   end
 end
