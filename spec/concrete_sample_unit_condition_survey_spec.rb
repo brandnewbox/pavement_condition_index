@@ -8,7 +8,7 @@ RSpec.describe PavementConditionIndex do
         area: 20, # Required: number of slabs
         pavement_type: :concrete, # Required
         distresses: [
-          {severity: :high, type: :joint_seal_damage, quantity: nil}, # joint_seal_damage has no area
+          {severity: :high, type: :joint_seal_damage, quantity: 123}, # joint_seal_damage has no area
           {severity: :low, type: :corner_break, quantity: 3},
           {severity: :medium, type: :corner_break, quantity: 1},
           {severity: :medium, type: :divided_slab, quantity: 3},
@@ -67,7 +67,7 @@ RSpec.describe PavementConditionIndex do
       end
 
       it 'gets a correct total_quantity' do
-        expect(@first_distress_group.total_quantity).to eq(20)
+        expect(@first_distress_group.total_quantity).to eq(123)
       end
 
       it 'gets a correct density' do
