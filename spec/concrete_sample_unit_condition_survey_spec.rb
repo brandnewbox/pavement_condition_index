@@ -36,6 +36,29 @@ RSpec.describe PavementConditionIndex do
       expect(@sample_survey.distress_groups).not_to be nil
     end
 
+    describe 'zero_distresses' do
+      before do
+        @empty_sample_survey = PavementConditionIndex::SampleUnitConditionSurvey::ConcreteSurvey.new({
+          area: 2200,
+          number_of_slabs: 20,
+          distresses: []
+        })
+      end
+
+      it 'has correct pci score' do
+        expect(@empty_sample_survey.pci.score).to be_within(4).of(100)
+      end
+
+      it 'has correct pci rating' do
+        expect(@empty_sample_survey.pci.rating).to eq('Good')
+      end
+
+      it 'has correct pci color' do
+        expect(@empty_sample_survey.pci.color).to eq('#0f7d1d')
+      end
+
+    end
+
     describe 'distress_groups' do
       before do
         @distress_groups = @sample_survey.distress_groups
@@ -97,8 +120,8 @@ RSpec.describe PavementConditionIndex do
         expect(@cdv_iterations.count).to be_within(1).of(7)
       end
 
-      it 'has the right deduct_values' do
-        @first_cdv_iteration.deduct_values.each_with_index do |dv, index|
+      it 'has the right adjusted_deduct_values' do
+        @first_cdv_iteration.adjusted_deduct_values.each_with_index do |dv, index|
           expect(dv).to be_within(3).of([30.5,25.1,12.6,9.0,8.0,7.7,5.8,1.76][index])
         end
       end

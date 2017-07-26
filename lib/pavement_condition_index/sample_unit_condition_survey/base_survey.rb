@@ -4,6 +4,10 @@ module PavementConditionIndex
 
       attr_reader :area, :pavement_type, :distresses, :size_of_sample_unit
 
+      def q
+        deduct_values.select {|dv| dv > 2.0}.length
+      end
+
       def distress_groups
         @distress_groups ||= begin
           grouped_distresses = @distresses.group_by{|distress| [distress[:type],distress[:severity]]}
@@ -13,11 +17,11 @@ module PavementConditionIndex
 
       def cdv_iterations
         @cdv_iterations ||= begin
-          cdv_iterations = [PavementConditionIndex::CdvIteration.new(deduct_values: allowed_deduct_values, pavement_type: @pavement_type)] # first row
-          while next_iteration_deduct_values = cdv_iterations.last.next_iteration_deduct_values # while next_iteration_deduct_values != nil
-            cdv_iterations << PavementConditionIndex::CdvIteration.new(deduct_values: next_iteration_deduct_values, pavement_type: @pavement_type)
+          r = []
+          (1..q).each do |q|
+            r << PavementConditionIndex::CdvIteration.new(deduct_values: deduct_values, pavement_type: @pavement_type, q: q)
           end
-          cdv_iterations
+          r.reverse
         end
       end
 
@@ -38,15 +42,20 @@ module PavementConditionIndex
       end
 
       def highest_deduct_value
-        @highest_deduct_value ||= deduct_values.max || 0
+        @highest_deduct_value ||= distress_groups.map(&:deduct_value).max || 0
       end
 
       def deduct_values
-        @deduct_values ||= distress_groups.map(&:deduct_value).sort {|x,y| y <=> x}
+        @deduct_values ||= begin
+          dvs = distress_groups.map(&:deduct_value).sort {|x,y| y <=> x}.take(10) # Max of 10
+          a = dvs.shift(allowable_number_of_deduct_values.floor)
+          a << dvs.shift * (allowable_number_of_deduct_values%1) unless dvs.empty?
+          a
+        end
       end
 
       def maximum_corrected_deduct_value
-        @maximum_corrected_deduct_value ||= cdv_iterations.map(&:corrected_deduct_value).max
+        @maximum_corrected_deduct_value ||= cdv_iterations.map(&:corrected_deduct_value).max|| 0
       end
 
       def pavement_condition_index
