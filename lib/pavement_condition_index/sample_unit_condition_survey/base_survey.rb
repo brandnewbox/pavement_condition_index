@@ -38,7 +38,7 @@ module PavementConditionIndex
       end
 
       def highest_deduct_value
-        @highest_deduct_value ||= deduct_values.max
+        @highest_deduct_value ||= deduct_values.max || 0
       end
 
       def deduct_values
