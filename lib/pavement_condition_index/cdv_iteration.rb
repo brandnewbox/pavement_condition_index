@@ -10,7 +10,7 @@ module PavementConditionIndex
     end
 
     def total_deduct_value
-      @total_deduct_value ||= deduct_values.sum
+      @total_deduct_value ||= @deduct_values.sum
     end
 
     def corrected_deduct_value
@@ -22,7 +22,7 @@ module PavementConditionIndex
     def next_iteration_deduct_values
       return nil if @q == 1
 
-      deduct_values = @deduct_values
+      deduct_values = @deduct_values.clone
       dv_to_change = deduct_values.select{|dv| dv > 2}.to_a.min
       unless dv_to_change.nil?
         dv_index = deduct_values.rindex(dv_to_change)

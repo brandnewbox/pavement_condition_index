@@ -214,7 +214,6 @@ module PavementConditionIndex
           patching_small: {
             low: [0.0048, -0.016, -0.0945].reverse,
             medium: [0.0055, 0.1313, 0.0298].reverse,
-            # medium: [0.0055, 0.1313,11 -].reverse,
             high: [-0.0054, 0.5558, -0.022].reverse,
             valid_min: 0,
             valid_max: 100
@@ -270,7 +269,6 @@ module PavementConditionIndex
           },
           spalling_corner: {
             low: [0.0063, 0.074, -0.123].reverse,
-            # low: [0.0063, 0.074, -0.12].reverse,
             medium: [0.0044, 0.2576, -0.0557].reverse,
             high: [-0.0101, 0.7972, 0.0026].reverse,
             valid_min: 0,

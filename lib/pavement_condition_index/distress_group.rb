@@ -13,15 +13,13 @@ module PavementConditionIndex
     end
 
     def total_quantity
-      # @total_quantity ||= begin
-        # if @type == :joint_seal_damage 
-        #   # @area
-        #   55.0
-        # else
-        #   @distresses.map(&:quantity).sum
-        # end
-      # end
-      55.0
+      @total_quantity ||= begin
+        if @type == :joint_seal_damage 
+          @area
+        else
+          @distresses.map(&:quantity).sum
+        end
+      end
     end
 
     def density
