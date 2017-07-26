@@ -10,7 +10,7 @@ module PavementConditionIndex
     end
 
     def total_deduct_value
-      @total_deduct_value ||= @deduct_values.sum
+      @total_deduct_value ||= @deduct_values.inject(0){|sum,x| sum + x }
     end
 
     def corrected_deduct_value

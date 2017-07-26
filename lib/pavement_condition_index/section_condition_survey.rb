@@ -32,16 +32,16 @@ module PavementConditionIndex
     end
 
     def weighted_pci_scores
-      @weighted_pci_scores ||= @sample_unit_condition_surveys.map{|sample_unit_condition_survey| sample_unit_condition_survey.pavement_condition_index.score * sample_unit_condition_survey.area}
+      @weighted_pci_scores ||= @sample_unit_condition_surveys.map{|sample_unit_condition_survey| sample_unit_condition_survey.pavement_condition_index.score * sample_unit_condition_survey.area}.inject(0){|sum,x| sum + x }
     end
 
     def sum_of_sample_unit_condition_survey_areas
-      @sum_of_sample_unit_condition_survey_areas ||= @sample_unit_condition_surveys.map{|sample_unit_condition_survey| sample_unit_condition_survey.area}.sum
+      @sum_of_sample_unit_condition_survey_areas ||= @sample_unit_condition_surveys.map{|sample_unit_condition_survey| sample_unit_condition_survey.area}.inject(0){|sum,x| sum + x }.to_f
     end
 
     def pavement_condition_index
       @pavement_condition_index ||= begin
-        pci_score = weighted_pci_scores.sum / sum_of_sample_unit_condition_survey_areas.to_f
+        pci_score = weighted_pci_scores / sum_of_sample_unit_condition_survey_areas
         PavementConditionIndex::PCI.new(score: pci_score)
       end
     end
