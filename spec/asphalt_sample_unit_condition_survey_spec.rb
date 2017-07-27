@@ -158,7 +158,7 @@ RSpec.describe PavementConditionIndex do
     end
 
     it 'has correct pci color' do
-      expect(@sample_survey.pci.color).to eq('#fc2e1f')
+      expect(@sample_survey.pci.color).to eq('fc2e1f')
     end
 
   end

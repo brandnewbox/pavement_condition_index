@@ -7,50 +7,35 @@ module PavementConditionIndex
       @score = score
     end
 
-    def rating
-      @rating ||= begin
+    def lookup
+      @lookup ||= begin
         case @score.to_i
         when 85..100
-          'Good'
+          {rating: 'Good', color: '0f7d1d'}
         when 70..85
-          'Satisfactory'
+          {rating: 'Satisfactory', color: '1ec734'}
         when 55..70
-          'Fair'
+          {rating: 'Fair', color: 'fefb4a'}
         when 40..55
-          'Poor'
+          {rating: 'Poor', color: 'fc2e1f'}
         when 25..40
-          'Very Poor'
+          {rating: 'Very Poor', color: 'a81a10'}
         when 10..25
-          'Serious'
+          {rating: 'Serious', color: '690d07'}
         when 0..10
-          'Failed'
+          {rating: 'Failed', color: '979797'}
         else
-          "ERROR"
+          {rating: 'ERROR', color: '000000'}
         end
       end
     end
 
+    def rating
+      lookup[:rating]
+    end
+
     def color
-      @color ||= begin
-        case @score.to_i
-        when 85..100
-          '#0f7d1d'
-        when 70..85
-          '#1ec734'
-        when 55..70
-          '#fefb4a'
-        when 40..55
-          '#fc2e1f'
-        when 25..40
-          '#a81a10'
-        when 10..25
-          '#690d07'
-        when 0..10
-          '#979797'
-        else
-          '#000000'
-        end
-      end
+      lookup[:color]
     end
 
   end
