@@ -68,10 +68,10 @@ module PavementConditionIndex
           },
           lane_shoulder_drop_off: {
             low: [-2.36, 4.05, 7.42, 2.0, 1.66].reverse,
-            medium: [-3.82, 8.29, 12.34, 1.14, 3.55].reverse,
-            high: [-5.25, 7.89, 18.07, 6.87, 5.74].reverse,
+            medium: [1.26, 5.75, 6.31, 2.54, 3.8].reverse,
+            high: [-1.61, 10.1, 14.43, 4.24, 5.94].reverse,
             valid_min: 0.4,
-            valid_max: 20.0
+            valid_max: 15.0
           },
           longitudinal_transverse_cracking: {
             low: [-0.57, 1.19, 6.78, 7.22, 2.32].reverse,
