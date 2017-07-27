@@ -5,8 +5,6 @@ module PavementConditionIndex
 
     def initialize(score:nil)
       @score = score
-      @rating = rating
-      @color = color
     end
 
     def rating
