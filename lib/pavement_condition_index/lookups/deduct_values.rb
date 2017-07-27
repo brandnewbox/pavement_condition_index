@@ -292,16 +292,11 @@ module PavementConditionIndex
       }
 
       def call(value)
-        valid_max_value = DEDUCTS[@pavement_type][@distress_type][:valid_max]
-        valid_min_value = DEDUCTS[@pavement_type][@distress_type][:valid_min]
-        value = valid_max_value if value > valid_max_value
-        value = valid_min_value if value < valid_min_value
+        value = value.clamp(DEDUCTS[@pavement_type][@distress_type][:valid_min],DEDUCTS[@pavement_type][@distress_type][:valid_max])
         # Asphalt charts use logarithmic scale, concrete uses linear
         value = @pavement_type == :asphalt ? Math.log10(value.to_f) : value.to_f
-
         coefficients = DEDUCTS[@pavement_type][@distress_type][@severity]
-
-        generate_polynomial(*coefficients).call(value).clamp(0.0,100.0)
+        return generate_polynomial(*coefficients).call(value).clamp(0.0,100.0)
       end
 
       private
