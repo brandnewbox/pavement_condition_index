@@ -301,7 +301,7 @@ module PavementConditionIndex
 
         coefficients = DEDUCTS[@pavement_type][@distress_type][@severity]
 
-        result = generate_polynomial(*coefficients).call(value)
+        result = generate_polynomial(*coefficients).call(value).to_f
         result = 100.0 if result > 100.0
         result = 0.0 if result < 0.0
         result
