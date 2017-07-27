@@ -3,6 +3,7 @@ require "spec_helper"
 RSpec.describe PavementConditionIndex do
 
   LOG_X_VALUES = [0.1, 0.2, 0.4, 1.0, 2.0, 4.0, 10.0, 20.0, 40.0, 100.0]
+  X_VALUES = [0.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0, 100.0]
 
   DEDUCTS = [
     {pavement_type: :asphalt, distress_type: :alligator_cracking, severity: :low, x: LOG_X_VALUES, expected_y: [ 3.7, 4.0, 4.9, 10.7, 16.9, 23.7, 32.8, 40.0, 48.7, 61.7]},
@@ -13,10 +14,17 @@ RSpec.describe PavementConditionIndex do
     {pavement_type: :asphalt, distress_type: :bleeding, severity: :high, x: LOG_X_VALUES, expected_y: [2.4, 3.0, 3.8, 5.9, 8.6, 13.7, 22.3, 34.1, 49.1, 73.0]},
     {pavement_type: :asphalt, distress_type: :lane_shoulder_drop_off, severity: :low, x: LOG_X_VALUES, expected_y: [1.6, 1.6, 1.6, 2.0, 3.4, 6.1, 11.7, 16.7, 16.7, 16.7]},
     {pavement_type: :asphalt, distress_type: :lane_shoulder_drop_off, severity: :medium, x: LOG_X_VALUES, expected_y: [3.6, 3.6, 3.6, 3.9, 5.5, 9.0, 18.2, 27.6, 27.6, 27.6]},
-    {pavement_type: :asphalt, distress_type: :lane_shoulder_drop_off, severity: :high, x: LOG_X_VALUES, expected_y: [5.5, 5.5, 5.5, 6.5, 9.7, 16.1, 33.0, 43.9, 43.9, 43.9]}
+    {pavement_type: :asphalt, distress_type: :lane_shoulder_drop_off, severity: :high, x: LOG_X_VALUES, expected_y: [5.5, 5.5, 5.5, 6.5, 9.7, 16.1, 33.0, 43.9, 43.9, 43.9]},
+
+    {pavement_type: :concrete, distress_type: :blow_ups, severity: :low, x: X_VALUES, expected_y: [0, 8, 16, 23, 29, 34, 37, 40, 42, 43, 44]},
+    {pavement_type: :concrete, distress_type: :blow_ups, severity: :medium, x: X_VALUES, expected_y: [0, 19, 33, 46, 57, 66, 72, 77, 80, 81, 83]},
+    {pavement_type: :concrete, distress_type: :blow_ups, severity: :high, x: X_VALUES, expected_y: [0, 59, 71, 81, 87, 93, 99, 100, 100, 100, 100]},
+    {pavement_type: :concrete, distress_type: :corner_break, severity: :low, x: X_VALUES, expected_y: [0, 8, 17, 24, 31, 36, 41, 45, 47, 49, 50]},
+    {pavement_type: :concrete, distress_type: :corner_break, severity: :medium, x: X_VALUES, expected_y: [0, 15, 28, 38, 46, 52, 56, 58, 60, 62, 64]},
+    {pavement_type: :concrete, distress_type: :corner_break, severity: :high, x: X_VALUES, expected_y: [0, 25, 40, 52, 60, 66, 71, 74, 76, 78, 79]}
   ]
 
-  describe 'asphalt_deduct_value_equations' do
+  describe 'deduct_value_equations' do
     DEDUCTS.each do |deduct|
 
       describe "#{deduct[:pavement_type]}/#{deduct[:distress_type]}/#{deduct[:severity]}" do
