@@ -17,3 +17,5 @@ require 'pavement_condition_index/sample_unit_condition_survey/concrete_survey'
 
 require 'pavement_condition_index/lookups/deduct_values'
 require 'pavement_condition_index/lookups/corrected_deduct_values'
+require 'pavement_condition_index/lookups/observed_deduct_values'
+require 'pavement_condition_index/lookups/calculated_deduct_coefficients'
