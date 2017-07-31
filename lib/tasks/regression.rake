@@ -4,7 +4,7 @@ require 'matrix'
 
 namespace :regression do
 
-  task :generate_deducts do
+  task :generate_coefficients do
     output = PavementConditionIndex::Lookups::ObservedDeductValues::OBSERVED_VALUES.map do |pavement_type_key,pavement_type_values|
       remapped_pavement_type_values = pavement_type_values.map do |distress_type_key,distress_type_values|
         coefficients = {low: nil, medium: nil, high: nil}.map do |severity_key,coefficient|
