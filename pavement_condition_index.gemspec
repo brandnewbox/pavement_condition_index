@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "pavement_condition_index"
   spec.version       = PavementConditionIndex::VERSION
   spec.authors       = ["Andy Monroe", "Nate Clark"]
-  spec.email         = ["amonroe805@gmail.com"]
+  spec.email         = ["hello@brandnewbox.com"]
 
   spec.summary       = %q{Summary}
-  spec.homepage      = "http://www.google.com"
+  spec.homepage      = "https://github.com/brandnewbox/pavement_condition_index"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
