@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Andy Monroe", "Nate Clark"]
   spec.email         = ["hello@brandnewbox.com"]
 
-  spec.summary       = %q{Summary}
+  spec.summary       = %q{A ruby solution for solving Pavement Condition Index using the ASTM D6433 Standard Practice for Roads and Parking Lots Pavement Condition Index Surveys}
   spec.homepage      = "https://github.com/brandnewbox/pavement_condition_index"
   spec.license       = "MIT"
 
