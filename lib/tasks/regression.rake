@@ -65,8 +65,8 @@ namespace :regression do
 
   task :generate_calculated_deduct_coefficients_file do
     header =
-      "# generate this whole file by running command:\n"+
-      "# rake regression:generate_calculated_coefficients_file > lib/pavement_condition_index/lookups/calculated_deduct_coefficients.rb\n"+
+      "# generate this whole file by running the following command:\n"+
+      "# rake regression:generate_calculated_deduct_coefficients_file > lib/pavement_condition_index/lookups/calculated_deduct_coefficients.rb\n"+
       "\n"+ 
       "module PavementConditionIndex\n"+
       "  module Lookups\n"+
@@ -87,7 +87,7 @@ namespace :regression do
 
   task :generate_calculated_corrected_deduct_coefficients_file do
     header =
-      "# generate this whole file by running command:\n"+
+      "# generate this whole file by running the following command:\n"+
       "# rake regression:generate_calculated_corrected_deduct_coefficients_file > lib/pavement_condition_index/lookups/calculated_corrected_deduct_coefficients.rb\n"+
       "\n"+ 
       "module PavementConditionIndex\n"+

@@ -4,19 +4,26 @@ module PavementConditionIndex
 
       X_VALUES = [30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0, 100.0, 110.0, 120.0, 130.0, 140.0, 150.0, 160.0, 170.0, 180.0, 190.0, 200.0]
 
-      # the reference charts do not actually include these lines,
-      # so this is what we think they would be
+      # The reference charts do not actually include these lines,
+      #   so this is what we think they would be.
+      # How the interpolated values were determined [concrete: q5, q7, q8]:
+      #   Average (or weighted average) of the lines surrounding it.
+      #   This should be a good estimate.
+      # How the extrapolated values were determined [asphalt: q8, q9, q10; concrete: q10]:
+      #   Took the difference between the last two known, observed q-value arrays, and added that difference
+      #   to the last known q-value array. (Asphalt Ex: q8 = q7 + (q7 - q6), q9 = q7 + 2(q7 - q6), etc.)
+      #   This estimate may be less accurate.
       ESTIMATED_VALUES = {
         asphalt: {
-          q8: [6.4, 14.4, 19.9, 25.2, 31.1, 37.5, 42.8, 47.8, 52.9, 58.4, 62.2, 65.5, 64.4, 68.5, 71.4, 74.1, 76.3, 78.0],
-          q9: [3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0],
-          q10: [3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0]
+          q8: [6.1, 13.1, 19.8, 25.6, 31.7, 37.6, 43.0, 48.1, 53.3, 58.7, 63.1, 66.8, 69.8, 72.4, 73.1, 74.2, 74.6, 74.2],
+          q9: [6.1, 13.1, 19.8, 25.6, 31.7, 37.6, 43.0, 48.1, 53.3, 58.7, 63.1, 66.2, 68.3, 70.0, 69.0, 69.0, 68.1, 66.2],
+          q10: [6.1, 13.1, 19.8, 25.6, 31.7, 37.6, 43.0, 48.1, 53.3, 58.7, 63.1, 65.6, 66.8, 67.6, 64.9, 63.8, 61.6, 58.2]
         },
         concrete: {
           q5: [14.6, 20.5, 26.1, 32.0, 37.6, 43.3, 48.7, 54.1, 59.2, 64.2, 68.8, 73.6, 77.9, 82.2, 86.2, 90.1, 94.0, 97.4],
           q7: [10.9, 16.8, 22.5, 28.1, 33.3, 38.5, 43.8, 48.9, 53.9, 58.6, 63.2, 67.9, 72.1, 76.4, 80.1, 84.0, 87.6, 90.6],
           q8: [9.5, 15.5, 21.2, 26.7, 31.9, 36.7, 41.6, 46.5, 51.5, 56.0, 60.5, 65.3, 69.4, 73.6, 77.5, 81.4, 84.8, 88.2],
-          q10: [3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0]
+          q10: [6.5, 13.1, 18.8, 24.1, 28.9, 32.9, 37.0, 41.7, 46.7, 51.0, 55.1, 60.3, 64.0, 68.2, 72.1, 76.0, 79.2, 83.2]
         }
       }
 

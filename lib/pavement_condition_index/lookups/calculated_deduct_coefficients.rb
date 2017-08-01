@@ -1,11 +1,11 @@
-# generate this whole file by running command:
-# rake regression:generate_calculated_coefficients_file > lib/pavement_condition_index/lookups/calculated_deduct_coefficients.rb
+# generate this whole file by running the following command:
+# rake regression:generate_calculated_deduct_coefficients_file > lib/pavement_condition_index/lookups/calculated_deduct_coefficients.rb
 
 module PavementConditionIndex
   module Lookups
     class CalculatedDeductCoefficients
 
-# Output of `rake regression:generate_coefficients`
+# Output of `rake regression:generate_deduct_coefficients`
 COEFFICIENTS = 
 {:asphalt=>
   {:alligator_cracking=>
