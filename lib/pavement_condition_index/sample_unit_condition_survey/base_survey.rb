@@ -4,6 +4,13 @@ module PavementConditionIndex
 
       attr_reader :area, :pavement_type, :distresses, :size_of_sample_unit, :identifier, :sample_type
 
+      def initialize(area:,number_of_slabs:,distresses:,identifier:nil,sample_type: :random)
+        @identifier = identifier
+        @area = area
+        @distresses = distresses
+        @sample_type = sample_type
+      end
+
       def q
         deduct_values.select {|dv| dv > 2.0}.length
       end
