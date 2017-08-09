@@ -2,7 +2,7 @@ module PavementConditionIndex
   module SampleUnitConditionSurvey
     class BaseSurvey
 
-      attr_reader :area, :pavement_type, :distresses, :size_of_sample_unit, :identifier
+      attr_reader :area, :pavement_type, :distresses, :size_of_sample_unit, :identifier, :sample_type
 
       def q
         deduct_values.select {|dv| dv > 2.0}.length
